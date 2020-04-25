@@ -1,1 +1,1 @@
-# SlidingPlacehloderTextField
+# NRSlidingPlaceholderTextField
