@@ -1,0 +1,6 @@
+framework module NRSlidingPlaceholderTextField {
+  umbrella header "NRSlidingPlaceholderTextField-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,16 @@
+PODS:
+  - NRSlidingPlaceholderTextField (1.0.0)
+
+DEPENDENCIES:
+  - NRSlidingPlaceholderTextField (from `../`)
+
+EXTERNAL SOURCES:
+  NRSlidingPlaceholderTextField:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  NRSlidingPlaceholderTextField: 01de1a224902797c0ecec5ffa921cf6225c7a8e9
+
+PODFILE CHECKSUM: 4f42624ec2d3306d71d87e424fac99df4d14d680
+
+COCOAPODS: 1.9.1

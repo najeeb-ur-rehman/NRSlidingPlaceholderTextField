@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NRSlidingPlaceholderTextField: UITextField {
+open class NRSlidingPlaceholderTextField: UITextField {
     
     
     // MARK: - Inspectable properties
@@ -16,11 +16,11 @@ class NRSlidingPlaceholderTextField: UITextField {
     @IBInspectable public var sidePadding: CGFloat = 7.0
     
     
-    
     // MARK: - Instance Properties
     
     private var placeholderAtStart = true
     private let minimumSidePadding: CGFloat = 7
+    private var isAttributedPlaceholder = false
     
     private var placeholderSidePadding: CGFloat {
         max(minimumSidePadding, sidePadding)
@@ -35,22 +35,23 @@ class NRSlidingPlaceholderTextField: UITextField {
         label.backgroundColor = .clear
         label.font = self.font
         label.text = self.placeholder
-        label.attributedText = self.attributedPlaceholder
+        label.textColor = self.textColor
         return label
     }()
-    
     
     
     // MARK: - UITextField Properties
     
     override public var placeholder: String? {
         didSet {
+            isAttributedPlaceholder = false
             placeholderLabel.text = placeholder
         }
     }
     
     override public var attributedPlaceholder: NSAttributedString? {
         didSet {
+            isAttributedPlaceholder = true
             placeholderLabel.attributedText = attributedPlaceholder
         }
     }
@@ -67,23 +68,29 @@ class NRSlidingPlaceholderTextField: UITextField {
         }
     }
     
+    override public var textColor: UIColor? {
+        didSet {
+            if !isAttributedPlaceholder {
+                placeholderLabel.textColor = textColor
+            }
+        }
+    }
     
     
     // MARK: - Initializers
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         
         initialViewSettings()
     }
 
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         super.init(coder: coder)
         
         initialViewSettings()
     }
-    
     
     
     // MARK: - View Layout Methods
@@ -95,21 +102,24 @@ class NRSlidingPlaceholderTextField: UITextField {
     }
     
     
-    
-    // MARK: UITextField Methods
+    // MARK: - UITextField Methods
     
     override final public func placeholderRect(forBounds bounds: CGRect) -> CGRect {
         .zero
     }
     
-    
     override final public func rightViewRect(forBounds bounds: CGRect) -> CGRect {
         return rectForPlaceholderView()
     }
+
+}
+
+
+// MARK: - Private Methods
+
+extension NRSlidingPlaceholderTextField {
     
-    
-    
-    // MARK: - Helper Methods
+    // MARK: Helpers
     
     private func rectForPlaceholderView() -> CGRect {
         let placholderWidth = placeholderLabel.intrinsicContentSize.width + (placeholderSidePadding * 2)
@@ -142,14 +152,12 @@ class NRSlidingPlaceholderTextField: UITextField {
         }, completion: nil)
     }
     
-    
-    
-    // MARK: - Actions
+    // MARK: Actions
     
     @objc
     private func textFieldDidEndEditing(textField: UITextField) {
+        text = textField.text
         if isEmpty {
-            placeholderAtStart = true
             updateLayoutWithAnimation()
         }
     }
@@ -159,5 +167,5 @@ class NRSlidingPlaceholderTextField: UITextField {
         placeholderAtStart = false
         updateLayoutWithAnimation()
     }
-
+    
 }
