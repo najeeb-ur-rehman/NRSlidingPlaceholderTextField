@@ -25,7 +25,7 @@ pod 'NRSlidingPlaceholderTextField'
 
 ## Usage
 
-It can be used just like the UITextField and can be even subclassed. It will show exactly the same behaviour as UITextField on the placeholder when setting textField's properties (e.g. textColor, font etc) i.e. if you set the font of textField it will also override the placeholder's font, even for the attributed placeholder.
+It can be used just like the same way as UITextField and can even subclassed. It will show exactly the same behaviour as UITextField on the placeholder when setting textField's properties (e.g. textColor, font etc) i.e. if you set the font of textField it will also override the placeholder's font, even for the attributed placeholder.
 
 - **Using Code**<br>
 
