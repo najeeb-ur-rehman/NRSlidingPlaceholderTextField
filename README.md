@@ -11,7 +11,7 @@
 
 ## Demo
 
-<img src="Demo.gif" title="Demo" >
+<img src="https://raw.githubusercontent.com/najeeb-ur-rehman/NRSlidingPlaceholderTextField/master/Demo.gif" title="Demo" >
 
 <br>
 
